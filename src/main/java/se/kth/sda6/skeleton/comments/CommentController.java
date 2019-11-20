@@ -28,7 +28,7 @@ public class CommentController {
 
     @GetMapping(value = "/comments", params = "postId")
     public ResponseEntity<?> getAllOnPost(@RequestParam Long postId) {
-        Post post = postService.getByID(postId)
+        Post post = postService.getById(postId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         List<Comment> comments = commentService.getAllByPost(post);
         return new ResponseEntity<>(comments, HttpStatus.OK);
