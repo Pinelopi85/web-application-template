@@ -1,9 +1,12 @@
 package se.kth.sda6.skeleton.posts;
 
-import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /*
     @TODO Autowire the PostRepository and use it to implement all the service methods.
@@ -13,28 +16,37 @@ public class PostService {
     @Autowired
     private PostRepository repository;
 
+    //get all posts and return them as List<Post>
     public List<Post> getAll() {
-        // @TODO get all posts and return them as List<Post>
-        return repository.findAll();
+        return repository.findAll().stream()
+                .collect(Collectors.toList());
     }
 
-    public Optional<Post> getById(Long id) {
-        // @TODO get a post by ID if it exists
-        return repository.findById(id);
+    // get a post by ID if it exists
+    public Optional<Post> getByID(Long id) {
+       return repository.findById(id);
+
     }
 
     public Post create(Post newPost) {
-        // @TODO save the post to DB and return the saved post
         return repository.save(newPost);
     }
 
+    // update the post if it exists in DB and return the updated post.
     public Post update(Post updatedPost) {
-        // @TODO update the post if it exists in DB and return the updated post.
         return repository.save(updatedPost);
     }
 
-    public void delete(Long id) {
-        // @TODO delete the post by id
+    // delete the post by id
+    public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+   // public List<Post> getAllByConcertID(Long commentId) {
+   //     return repository.findAllByCommentId(commentId);
+
+   // }
 }
+
+
+
