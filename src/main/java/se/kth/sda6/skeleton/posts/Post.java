@@ -3,10 +3,7 @@ package se.kth.sda6.skeleton.posts;
 import se.kth.sda6.skeleton.comments.Comment;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.List;
 
-// @TODO add Hibernate annotations to define which table and columns should be used to save the Post Object.
 @Entity
 @Table(name = "post")
 public class Post {

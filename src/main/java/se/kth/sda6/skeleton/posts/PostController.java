@@ -7,10 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-/*
-    @TODO AutoWire PostService and create the methods needed to implement the API.
-    Don't forget to add necessary annotations.
- */
+
 @RestController
 @RequestMapping("/posts")
 public class PostController {
@@ -28,7 +25,7 @@ public class PostController {
     // Get a specific post by it's id
     @GetMapping("/{id}")
     public Post getById(@PathVariable Long id) {
-        return postService.getByID(id)
+        return postService.getById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
