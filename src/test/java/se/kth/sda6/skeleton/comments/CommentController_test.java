@@ -16,17 +16,16 @@ class CommentController_test {
     @Test
     void commentControllerCreateAndUpdateTrue(){
         //Testing create comment
-        ResponseEntity<?> comments = commentController.getAll();
-        List<Comment> initialList = (List<Comment>) comments.getBody();
+        ResponseEntity<?> listOfComments = commentController.getAll();
+        List<Comment> initialListOfComments = (List<Comment>) listOfComments.getBody();
         Comment newComment = new Comment();
         newComment.setBody("Sounds cool");
         commentController.create(newComment);
+        ResponseEntity<?> updatedListOfComments = commentController.getAll();
+        List<Comment> addOneCommentToList = (List<Comment>) updatedListOfComments.getBody();
+        assertTrue(addOneCommentToList.size() - initialListOfComments.size() == 1);
 
         //Testing update  comment
-        ResponseEntity<?> updatedComments = commentController.getAll();
-        List<Comment> updatedList = (List<Comment>) updatedComments.getBody();
-        assertTrue(updatedList.size() - initialList.size() == 1);
-
         Comment updatedComment = (Comment) commentController.getById(newComment.getId()).getBody();
         updatedComment.setBody("I changed my mind");
         commentController.update(updatedComment);
@@ -35,9 +34,9 @@ class CommentController_test {
 
         //Testing delete comment
         commentController.delete(newComment.getId());
-        updatedComments = commentController.getAll();
-        List<Comment> listAfterDeletion = (List<Comment>) updatedComments.getBody();
-        assertTrue(listAfterDeletion.size() - initialList.size() == 0);
+        updatedListOfComments = commentController.getAll();
+        List<Comment> listAfterDeletion = (List<Comment>) updatedListOfComments.getBody();
+        assertTrue(listAfterDeletion.size() - initialListOfComments.size() == 0);
     }
 }
 
