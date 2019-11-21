@@ -1,4 +1,4 @@
-package se.kth.sda6.skeleton;
+package se.kth.sda6.skeleton.Post.java;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +17,24 @@ class SkeletonApplicationTests {
 	@Test
 	void Post_CRUD_Test() {
 		//Testing Create  Post
-		List<Post> posts = postController.getAll();
+		List<Post> listOfPosts = postController.getAll();
 		Post newPost = new Post();
 		newPost.setBody("This is a test post");
 		postController.create(newPost);
+		List<Post> addOnePostToListOfPosts = postController.getAll();
+		assertTrue(addOnePostToListOfPosts.size() - listOfPosts.size() == 1);
+
 		//Testing Update Post
-		List<Post> updatedPosts = postController.getAll();
-		assertTrue(updatedPosts.size() - posts.size() == 1);
 		Post updatedPost = postController.getById(newPost.getId());
 		updatedPost.setBody("This is the updated post");
 		postController.update(updatedPost);
 		Post postFromDatabase = postController.getById(updatedPost.getId());
 		assertEquals(updatedPost.getBody(), postFromDatabase.getBody());
+
 		//Testing Delete Post
 		postController.delete(newPost.getId());
-		updatedPosts = postController.getAll();
-		assertTrue(updatedPosts.size() - posts.size() == 0);
+		addOnePostToListOfPosts = postController.getAll();
+		assertTrue(addOnePostToListOfPosts.size() - listOfPosts.size() == 0);
 	}
 
 }
