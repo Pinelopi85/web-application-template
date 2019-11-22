@@ -21,6 +21,7 @@ class PostsPage extends React.Component {
             this.setState({
                 posts: newPosts,
             });
+            console.log(this.state.posts)
         } catch (e) {
             console.error(e);
         }
@@ -43,6 +44,7 @@ class PostsPage extends React.Component {
         PostsApi.getAllPosts()
             .then(({data}) => this.setState({posts: data}))
             .catch(err => console.error(err));
+            console.log(this.state.posts)
     }
 
     render() {

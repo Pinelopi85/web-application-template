@@ -1,14 +1,17 @@
 import React from "react";
+import CommentList from '../comments/CommentList';
 
-function PostCard({post, onDeleteClick}) {
+function PostCard({ post, onDeleteClick }) {
     return (
         <div className="card mt-3">
             <div className="card-body">
                 <p>
                     {post.body}
+                    <button className="btn btn-link" onClick={onDeleteClick}>Delete</button>
                 </p>
-
-                <button className="btn btn-danger" onClick={onDeleteClick}>Delete</button>
+                <div>
+                    <CommentList post={post} />
+                </div>
             </div>
         </div>
     );

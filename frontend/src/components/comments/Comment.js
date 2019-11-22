@@ -5,10 +5,8 @@ function Comment({post, onDeleteClick}) {
         <div className="comment mt-3">
             <div className="comment-body">
                 <p>
-                    {post.body}
+                    {post.body} <button className="btn btn-link" onClick={onDeleteClick}>Delete</button>
                 </p>
-
-                <button className="btn btn-danger" onClick={onDeleteClick}>Delete</button>
             </div>
         </div>
     );
