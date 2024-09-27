@@ -1,6 +1,7 @@
 package se.kth.sda6.skeleton.user;
 
 import org.hibernate.validator.constraints.Length;
+import se.kth.sda6.skeleton.comments.Comment;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -18,12 +19,10 @@ public class User {
     @NotEmpty(message = "Please provide an email address")
     @Column(name = "email", unique = true)
     private String email;
-
-
     @Length(min = 5, max=100, message = "Password length most be between 5-100 characters")
     @Column(name = "password")
-    private String password;
 
+    private String password;
     @Length(min = 3, max=100, message = "Name must be between 3-100 characters")
     @Column(name = "name")
     private String name;
